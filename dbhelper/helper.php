@@ -40,14 +40,9 @@ class dbConnect{
     }
 
     function addUser($user,$t){
-        if($t== 'a')
-        {
-            $sql =$this->conn->prepare("Insert into Admin (email,username,password) Values(?,?,?)");
-        }
-        else if($t=='u')
-        {
-        $sql =$this->conn->prepare("Insert into User (email,username,password) Values(?,?,?)");
-        }
+
+
+        $sql =$this->conn->prepare("Insert into $t (email,username,password) Values(?,?,?)");
         $email = $user->getEmail();
         $password = $user->getPassword();
         $username = $user->getUsername();
@@ -80,38 +75,9 @@ class dbConnect{
     function getUnapprovedUser($t){
         $user = array();
         //$sql = "Select * from Post limit $limit";
-        if($t=='u'){
-        $data = $this->conn->prepare("Select * from User where approvedby=1");
-        }
-        else if($t=='a')
-        {
-            $data = $this->conn->prepare("Select * from Admin where approvedby=1");
-        }
-        $data->execute();
+       
+        $data = $this->conn->prepare("Select * from $t where approvedby=1");
         
-        $result = $data->get_result();
-        if($result->num_rows > 0){
-            while($row = $result->fetch_assoc()){
-                
-                $p = new User($row['id'],$row['email'],$row['username'],$row['password'],$row["approvedby"]);
-                array_push($user,$p);
-            }
-            
-        }
-        return $post;
-        
-    }
-
-    function getApprovedUser($t){
-        $user = array();
-        //$sql = "Select * from Post limit $limit";
-        if($t=='u'){
-        $data = $this->conn->prepare("Select * from User where approvedby!=1");
-        }
-        else if($t=='a')
-        {
-            $data = $this->conn->prepare("Select * from Admin where approvedby!=1");
-        }
         $data->execute();
         
         $result = $data->get_result();
@@ -124,6 +90,45 @@ class dbConnect{
             
         }
         return $user;
+        
+    }
+
+    function getApprovedUser($t){
+
+        //$t parameter to check if it is admin or for user 
+        $user = array();
+        //$sql = "Select * from Post limit $limit";
+
+        $data = $this->conn->prepare("Select * from $t where approvedby!=1");
+        echo $this->conn->error;
+        
+        
+        $data->execute();
+        
+        $result = $data->get_result();
+        if($result->num_rows > 0){
+            while($row = $result->fetch_assoc()){
+                
+                $p = new User($row['id'],$row['email'],$row['username'],$row['password'],$row["approvedby"]);
+                array_push($user,$p);
+            }
+            
+        }
+        return $user;
+
+    }
+
+    function approveUser($user,$admin,$t){
+        //$user is the username to approve and $admin is approved by which admin, $t to check if is user or admin
+        $sql = "Update $t set approvedby=? where username=?";
+        
+        $data = $this->conn->prepare($sql);
+       
+        $data->bind_param('is',$admin,$user);
+        $data->execute();
+        $data->close();
+
+
 
     }
 

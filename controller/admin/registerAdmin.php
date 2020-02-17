@@ -14,7 +14,7 @@ $admin->setEmail($email);
 $admin->setUsername($username);
 $admin->setPassword($password);
 $dbHelper = new dbConnect();
-$a = $dbHelper->addUser($admin,'a');
+$a = $dbHelper->addUser($admin,'Admin');
 
 echo "Register Admin page;$a";
 

@@ -4,9 +4,11 @@ $email = $_POST["email"];
 $username = $_POST["username"];
 $password = $_POST["password"];
 
-include("../error.php");
-include_once("../dbhelper/helper.php");
-include_once("../models/User.php");
+include_once("../../config/config.php");
+
+include($error);
+include_once($dbHelper);
+include_once($userModel);
 
 
 $user = new User();
@@ -15,6 +17,6 @@ $user->setUsername($username);
 $user->setPassword($password);
 #$user = new User($email=$email,$username=$user,$password=$password);
 $dbHelper = new dbConnect();
-$a = $dbHelper->addUser($user,'u');
-echo "$a Thank You $username for registering. You will be able to login when admin approves your request.";
+$a = $dbHelper->addUser($user,'User');
+echo "Thank You $username for registering. You will be able to login when admin approves your request.";
 ?>
