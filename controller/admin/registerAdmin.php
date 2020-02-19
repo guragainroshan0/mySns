@@ -1,9 +1,10 @@
 
 <?php
 
-include("../error.php");
-include_once("../dbhelper/helper.php");
-include_once("../models/Admin.php");
+include_once("adminControllerConfig.php");
+include($error);
+include_once($dbHelper);
+include_once($adminModel);
 
 $email = $_POST["email"];
 $username = $_POST["username"];

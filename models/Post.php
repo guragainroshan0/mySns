@@ -10,7 +10,7 @@ class Post{
 
 
 
-    function __construct($id=1,$title="",$likes=1,$content="",$date="",$postedby=1){
+    function __construct($title="",$content="",$postedby=1,$id=1,$date="",$likes=1){
         $this->id = $id;
         $this->title = $title;
         $this->likes = $likes;
@@ -58,7 +58,7 @@ class Post{
     }
   
     public function toString(){
-        echo "<br>id : $this->id <br> Title : $this->title <br>Content : $this->content<br>date : $this->date";
+        echo "<br>id : $this->id <br> Title : $this->title <br>Content : $this->content<br>date : $this->date <Br>by : $this->postedby";
     }
 
 }

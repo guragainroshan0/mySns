@@ -30,12 +30,29 @@ class dbConnect{
         $result = $data->get_result();
         if($result->num_rows > 0){
             while($row = $result->fetch_assoc()){
-                $p = new Post($row['id'],$row['title'],$row['likes'],$row['content'],$row['date'],$row['postedby']);
+                $p = new Post($row['title'],$row['content'],$row['postedby'],$row['id'],$row['date'],$row['likes']);
                 array_push($post,$p);
             }
             
         }
         return $post;
+
+    }
+
+    function getUser($userType,$id)
+    {
+        //get username of admin/user from ID
+        $data = $this->conn->prepare("Select * from $userType where id=?");
+        $data->bind_param("i",$id);
+        $data->execute();
+        
+        $result = $data->get_result();
+        if($result->num_rows > 0)
+        {
+        $row = $result->fetch_assoc();
+        return $row["username"];
+    }
+    return "Not Found";
 
     }
 
@@ -61,7 +78,7 @@ class dbConnect{
         $title = $post->getTitle();
         $likes = $post->getLikes();
         $content = $post->getContent();
-        $postedby=1;
+        $postedby=$post->getPostedBy();
         $sql->bind_param('sisi',$title,$likes,$content,$postedby);
         if(!$sql->execute()){
             return "error".$this->conn->error;
@@ -84,7 +101,10 @@ class dbConnect{
         if($result->num_rows > 0){
             while($row = $result->fetch_assoc()){
                 
+         
                 $p = new User($row['id'],$row['email'],$row['username'],$row['password'],$row["approvedby"]);
+                
+                
                 array_push($user,$p);
             }
             

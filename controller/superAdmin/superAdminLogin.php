@@ -1,18 +1,18 @@
 <?php
 
 //for config files include
-include_once("userControllerConfig.php");
+include_once("superAdminControllerConfig.php");
 
 
 
-
+//start session
 session_start();
 
 // //get username and password
 $username = $_POST['username'];
 $password = $_POST['password'];
 
-//start session
+
 
 
 //for reusing user information
@@ -23,7 +23,7 @@ $a = new dbConnect();
 
 
 //if user is approved then only log in
-$user = $a->getApprovedUser('User');
+$user = $a->getApprovedUser('Admin');
 
 //for all approved user find the logged in user
 for($i=0;$i<count($user);$i++){
@@ -37,20 +37,17 @@ for($i=0;$i<count($user);$i++){
         //set id variable for reuse
         $_SESSION["id"] = $user[$i]->getId();
 
-        header('Location:../../pages/user/userDashboard.php');
-        exit;
-
         
     break;
     }
-    
 
     //if no user is found destroy session
-    
+    session_destroy();
 }
-echo "User not found";
+
 //print the username of the loggedin user
- 
+header('Location:../../pages/admin/adminDashboard.php');
+exit;
 
 
 ?>

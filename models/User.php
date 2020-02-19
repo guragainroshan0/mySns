@@ -53,6 +53,9 @@ class User{
     {
         $this->approvedby = $pid;
     }  
+    public function toString(){
+        echo "<br>$this->username";
+    }
 
 }
 

@@ -1,16 +1,30 @@
 <?php
 
-include_once("../error.php");
-include_once("../dbhelper/helper.php");
-include_once("../models/Post.php");
+include_once("../config/config.php");
+include_once($dbHelper);
 
-$title = $_POST["title"];
-$likes = 0;
-$content = $_POST["content"];
+$userDashboard = "../pages/user/userDashboard.php";
 
-$dbHelper = new dbConnect();
-$post = new Post($title=$title,$content=$content,$likes=$likes);
+session_start();
+
+if(isset($_SESSION["id"])){
+    
+ $postTitle = $_POST["title"];
+ $likes = 0;
+ $content = $_POST["content"];
+
+
+ $dbHelper = new dbConnect();
+
+$post = new Post($title=$postTitle,$content=$content,$postedby=$_SESSION["id"]);
+
 $a = $dbHelper->addPost($post);
-echo $a;
+header("Location:/sns/pages/user/userDashboard.php");
+exit;
+}
+else{
+    echo "Login first";
+}
+
 
 ?>

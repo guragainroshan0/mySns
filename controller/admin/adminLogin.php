@@ -3,7 +3,7 @@
 //for config files include
 include_once("adminControllerConfig.php");
 
-
+include_once($error);
 
 //start session
 session_start();
@@ -36,13 +36,14 @@ for($i=0;$i<count($user);$i++){
         $newUser = $user[$i];
         //set id variable for reuse
         $_SESSION["id"] = $user[$i]->getId();
-
+        echo "User found";
+        echo $user[$i]->toString();
         
     break;
     }
 
     //if no user is found destroy session
-    session_destroy();
+    //session_destroy();
 }
 
 //print the username of the loggedin user

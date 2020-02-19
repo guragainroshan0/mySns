@@ -17,6 +17,7 @@ if(!isset($_SESSION['id'])){
 $a = new dbConnect();
 
 $users = $a->getUnapprovedUser('User');
+echo "<h3>Approve Users</h3>";
 
 for($i=0;$i<count($users);$i++){
 
@@ -30,4 +31,6 @@ for($i=0;$i<count($users);$i++){
     
 }
 ?>
+
+<a href="<?php echo $logout?>">Log Out</a>
 

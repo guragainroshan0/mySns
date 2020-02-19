@@ -15,6 +15,7 @@ $defaultFoot = HOME_DIR."pages/default/defaultFoot.html";
 $error = HOME_DIR."error.php";
 $postModel = HOME_DIR."models/Post.php";
 $userModel = HOME_DIR."models/User.php";
+$adminModel = HOME_DIR."models/Admin.php";
 //$homePage = HOME_DIR."pages/homepage.php";
 
 //for urls
@@ -24,5 +25,6 @@ $post = URL."controller/post.php";
 $registerAdmin = URL."controller/admin/registerAdmin.php";
 $registerUser = URL."controller/user/registerUser.php";
 $approveUser = URL."controller/admin/approveUser.php";
-
+$userDashboard = URL."controller/user/userDashboard.php";
+$logout = URL."controller/logout.php";
 ?>

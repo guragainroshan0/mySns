@@ -5,7 +5,7 @@ include($defaultHead); ?>
    
 
 <h1>Admin Register</h1>
-    <form action="../controller/registerAdmin.php" method="post">
+    <form action=<?php echo $registerAdmin?> method="post">
         Email : <input type="email" name="email" id="email"><br>
         UserName : <input type="text" name="username" id="uname"><br>
         Password : <input type="password" name="password" id="passwd"><br>
