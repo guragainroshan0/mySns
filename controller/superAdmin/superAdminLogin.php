@@ -23,7 +23,7 @@ $a = new dbConnect();
 
 
 //if user is approved then only log in
-$user = $a->getApprovedUser('Admin');
+$user = $a->getSuperAdmin();
 
 //for all approved user find the logged in user
 for($i=0;$i<count($user);$i++){
@@ -42,12 +42,17 @@ for($i=0;$i<count($user);$i++){
     }
 
     //if no user is found destroy session
-    session_destroy();
+   // session_destroy();
 }
 
+if(isset($_SESSION)){
 //print the username of the loggedin user
-header('Location:../../pages/admin/adminDashboard.php');
+header('Location:../../pages/superAdmin/superAdminDashboard.php');
 exit;
+}
+else{
+    echo "User information not found";
+}
 
 
 ?>

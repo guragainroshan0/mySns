@@ -5,6 +5,8 @@ include_once(HOME."config/config.php");
 include_once($error);
 include_once($postModel);
 include($userModel);
+include_once($superAdminModel);
+include_once($adminModel);
 
 class dbConnect{
 
@@ -149,6 +151,30 @@ class dbConnect{
         $data->close();
 
 
+
+    }
+    function getSuperAdmin(){
+
+        //$t parameter to check if it is admin or for user 
+        $user = array();
+        //$sql = "Select * from Post limit $limit";
+
+        $data = $this->conn->prepare("Select * from SuperAdmin");
+        echo $this->conn->error;
+        
+        
+        $data->execute();
+        
+        $result = $data->get_result();
+        if($result->num_rows > 0){
+            while($row = $result->fetch_assoc()){
+                
+                $p = new SuperAdmin($row['id'],$row['email'],$row['username'],$row['password']);
+                array_push($user,$p);
+            }
+            
+        }
+        return $user;
 
     }
 

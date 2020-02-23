@@ -18,48 +18,6 @@ class Admin extends User{
         $this->approvedby = $approvedby;
     }
 
-    public function getId(){
-        return $this->id;
-    }
-
-    public function getEmail(){
-        return $this->email;
-    }
-
-    public function getPassword(){
-        return $this->password;
-    }
-
-    public function getUsername(){
-        return $this->username;
-    }
-
-    public function getApprovedBy(){
-        return $this->approvedby;
-    }
-
-    public function setEmail($email){
-        $this->email = $email;
-    }
-
-    public function setUsername($username){
-        $this->username = $username;
-    }
-
-
-    public function setPassword($password){
-        //hash here
-        $this->password = $password;
-    }
-
-    public function setApprovedBy($pid)
-    {
-        $this->approvedby = $pid;
-    }  
-
-    public function toString(){
-        echo "<br>$this->username";
-    }
-
+    
 }
 ?>

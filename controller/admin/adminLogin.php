@@ -12,9 +12,6 @@ session_start();
 $username = $_POST['username'];
 $password = $_POST['password'];
 
-
-
-
 //for reusing user information
 $newUser = null;
 
