@@ -26,6 +26,7 @@ $post = URL."controller/post.php";
 $registerAdmin = URL."controller/admin/registerAdmin.php";
 $registerUser = URL."controller/user/registerUser.php";
 $approveUser = URL."controller/admin/approveUser.php";
+$approveAdmin = URL."controller/superAdmin/approveAdmin.php";
 $userDashboard = URL."controller/user/userDashboard.php";
 $logout = URL."controller/logout.php";
 $superAdminLogin=URL."controller/superAdmin/superAdminLogin.php";

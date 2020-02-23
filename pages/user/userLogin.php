@@ -1,6 +1,7 @@
 <?php
 include_once("../../config/config.php");
 include_once($error);
+include_once($defaultHead);
 
 
 ?>
@@ -10,3 +11,4 @@ include_once($error);
         Password : <input type="password" name="password" id="passwd"><br>
         <input type="submit" value="Login">
 </form>
+<a href="registerUser.php"> Register</a>

@@ -41,12 +41,12 @@ class User{
         $this->email = $email;
     }
     public function setUsername($username){
-        $this->username = $username;
+        $this->username = htmlspecialchars($username);
     }
 
     public function setPassword($password){
         //hash here
-        $this->password = $password;
+        $this->password = password_hash($password,PASSWORD_BCRYPT);
     }
 
     public function setApprovedBy($pid)

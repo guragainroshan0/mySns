@@ -1,6 +1,6 @@
 <?php
 include_once("../../config/config.php");
-
+include($defaultHead);
 ?>
 <h1> SuperAdmin Login</h1>
 <form action=<?php echo $superAdminLogin?> method="post">

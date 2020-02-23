@@ -29,7 +29,7 @@ $user = $a->getApprovedUser('User');
 for($i=0;$i<count($user);$i++){
 
     //check for username and password match
-    if($user[$i]->getUsername() == $username && $user[$i]->getPassword() == $password){
+    if($user[$i]->getUsername() == $username && password_verify($password,$user[$i]->getPassword())){
         //$_SESSION["username"] = $user[$i]->getUsername();
         
         //assign logged in user to the null variable

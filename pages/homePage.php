@@ -24,16 +24,16 @@ for($i=0;$i<count($posts);$i++){
   echo  "<div class='post' id=$i style='margin-bottom:50px';>
         
         <div class='title' id='title$i'>
-            <p>Title:   ". $posts[$i]->getTitle(). "</p>
+            <p>Title:   ". htmlentities($posts[$i]->getTitle()). "</p>
         </div>
         <div class='content' id='content$i'>
-            <p>Content:   ". $posts[$i]->getContent(). "</p>
+            <p>Content:   ". htmlentities($posts[$i]->getContent()). "</p>
         </div>
         <div class='date' id='date$i'>
         <p>". $posts[$i]->getDate(). "</p>
     </div>
     <div class='user' id='user$i'>
-        <p>". $username. "</p>
+        <p>". htmlentities($username). "</p>
     </div>
 
 

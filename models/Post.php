@@ -42,7 +42,7 @@ class Post{
         $this->title = $title;
     }
     public function setContent($content){
-        $this->content = $content;
+        $this->content =$content;
     }
     public function setDate($date){
         $this->date = $date;

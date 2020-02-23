@@ -25,8 +25,10 @@ $user = $a->getApprovedUser('Admin');
 //for all approved user find the logged in user
 for($i=0;$i<count($user);$i++){
 
+
+    echo $user[$i]->getPassword();
     //check for username and password match
-    if($user[$i]->getUsername() == $username && $user[$i]->getPassword() == $password){
+    if($user[$i]->getUsername() == $username && password_verify($password,$user[$i]->getPassword())){
         //$_SESSION["username"] = $user[$i]->getUsername();
         
         //assign logged in user to the null variable
@@ -43,9 +45,12 @@ for($i=0;$i<count($user);$i++){
     //session_destroy();
 }
 
+if(isset($_SESSION["id"]))
+{
 //print the username of the loggedin user
 header('Location:../../pages/admin/adminDashboard.php');
 exit;
-
+}
+echo "user not logged in";
 
 ?>

@@ -1,21 +1,23 @@
 <?php
 
-include_once("adminControllerConfig.php");
-
+include_once("superAdminControllerConfig.php");
+include_once($error);
+include_once($dbHelper);
 session_start();
+//echo $_SESSION['id'];
 if(!isset($_SESSION['id'])){
     echo "Please login to continue";
     header('Location:'.$homepage);
     exit;
 }
 
-$userName = $_POST["uname"];
+ $userName = $_POST["uname"];
+ echo $_SESSION["id"];
+ $a = new dbConnect();
 
+ $a->approveUser($userName,$_SESSION['id'],"Admin");
 
-$a = new dbConnect();
-$a->approveUser($userName,$_SESSION['id'],"Admin");
-
-echo "Approved";
+ echo $userName." Approved";
 
 
 ?>

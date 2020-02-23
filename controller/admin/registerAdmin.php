@@ -17,6 +17,6 @@ $admin->setPassword($password);
 $dbHelper = new dbConnect();
 $a = $dbHelper->addUser($admin,'Admin');
 
-echo "Register Admin page;$a";
+echo "Wait for approval of Superadmin";
 
 ?>
